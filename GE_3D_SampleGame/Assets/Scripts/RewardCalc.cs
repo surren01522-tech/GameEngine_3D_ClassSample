@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RewardCalc : MonoBehaviour
@@ -12,13 +13,26 @@ public class RewardCalc : MonoBehaviour
 
     public float ExpRate = 1.5f;
 
-    [ContextMenu("과제")]
+    [ContextMenu("정산")]
     void Print()
     {
-        int a = PlaySeconds / 60; // 분
-        int d = PlaySeconds % 60; // 나머지
-        int b = a / 60; //시간
-        int c = a % 60; //나머지 분
+        int Min = PlaySeconds / 60;
+        int sec = PlaySeconds % 60;
+        int Hour = Min / 60;
+        Debug.Log("플레이 시간:" + Hour + ":" + Min + ":" + sec);
+
+        int gold = Gold / Members;
+        int bonus = Gold % Members;
+        Debug.Log("1인 G" + Gold + "리더 보너스" + bonus);
+
+        float exp = Kills * ExpPerKill;
+        float totalexp = exp * ExpRate;
+        Debug.Log("경험치" + totalexp + "기본" + exp);
+
+        int level = (int)totalexp / 100;
+        int ExcessexperiencePoints = (int)totalexp % 100;
+        int RemainingEXP = 100 - ExcessexperiencePoints;
+        Debug.Log("LV " + level + "다음 레벨까지" + RemainingEXP);
 
 
     }
