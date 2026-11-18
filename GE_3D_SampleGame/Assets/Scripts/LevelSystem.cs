@@ -12,6 +12,17 @@ public class LevelSystem : MonoBehaviour
         int exp = 0;
 
         exp += killCount * expPerKill;
+
+
+        for(int i=0; i>=0; i++)
+        {
+            while (exp >= killCount * 10000)
+            {
+                exp -= level * 10000;
+                level++;
+            }
+        }
+        
         
     }
     
